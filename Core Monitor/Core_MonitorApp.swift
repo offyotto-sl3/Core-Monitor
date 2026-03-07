@@ -1,17 +1,23 @@
-//
-//  Core_MonitorApp.swift
-//  Core Monitor
-//
-//  Created by bookme on 3/7/26.
-//
-
 import SwiftUI
 
 @main
-struct Core_MonitorApp: App {
+struct CoreMonitorApp: App {
+    
+    init() {
+        // This forces the app to run as an accessory (no Dock icon)
+        // even if the Info.plist setting is being ignored
+        NSApplication.shared.setActivationPolicy(.accessory)
+    }
+
     var body: some Scene {
-        WindowGroup {
+        MenuBarExtra("CPU", systemImage: "cpu") {
             ContentView()
+            Divider()
+            Button("Quit Core Monitor") {
+                NSApplication.shared.terminate(nil)
+            }
+            .keyboardShortcut("q")
         }
     }
 }
+
