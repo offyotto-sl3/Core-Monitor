@@ -100,3 +100,8 @@
 - Collapsed `SystemMonitor` onto its published `snapshot` instead of maintaining a second parallel set of mutable top-level telemetry fields, removing the manual `objectWillChange` broadcast on every sample.
 - Switched the dashboard refresh path to observe `systemMonitor.$snapshot` directly so the main SwiftUI surface now follows the same source of truth already used by alerts and history/trend logic.
 - Verified the batch with a fresh macOS build and full `xcodebuild ... test` pass.
+
+### Completed batch
+- Added a dedicated `Helper Diagnostics` support card to the `System` tab so rechecks and report export no longer depend on reopening the welcome guide.
+- Updated in-app help and the helper diagnostics doc so the support flow now points users to `System` first, while keeping the welcome guide path available.
+- Verified the batch with a fresh macOS build and full `xcodebuild ... test` pass.
