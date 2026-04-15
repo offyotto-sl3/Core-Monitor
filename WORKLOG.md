@@ -128,3 +128,8 @@
 ### Completed batch
 - Expanded the overview trend surface beyond thermals so it now includes time-range memory usage and swap history alongside CPU, GPU, fan, and power trends.
 - Renamed the section to `Load & Thermal Trends` so the dashboard wording matches the broader sustained-load story instead of implying it is temperature-only.
+
+### Completed batch
+- Added a reusable monitoring-freshness model that classifies snapshots as `Waiting`, `Live`, `Delayed`, or `Stale` from the existing sample timestamp and active cadence.
+- Surfaced that status in both the Overview dashboard and menu bar popovers, including last-update copy plus live sensor/process sampling cadence so users can tell when telemetry is lagging instead of trusting stale numbers.
+- Added targeted freshness-model tests and re-verified the full macOS suite with `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test`.
