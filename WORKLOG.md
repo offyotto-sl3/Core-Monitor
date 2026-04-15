@@ -56,6 +56,10 @@
 - Added `docs/ARCHITECTURE.md` to map the app shell, monitoring path, fan-control/helper boundary, alerts stack, onboarding, and Touch Bar code for contributors.
 - Documented the highest-risk change areas so future work is less likely to push random edits into oversized files without understanding ownership first.
 
+### Completed batch
+- Added `CONTRIBUTING.md` with the core macOS build/test commands, helper-safety rules, UI verification expectations, and support-intake guidance for contributors.
+- Tightened contributor onboarding around the project’s highest-risk areas instead of leaving build/test and helper-trust expectations implicit.
+
 ## 2026-04-16
 
 ### Completed batch
