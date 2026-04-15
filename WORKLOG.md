@@ -82,3 +82,7 @@
 ### Completed batch
 - Upgraded the custom fan curve editor from a static preview to a directly draggable chart with constrained point movement, so editing the curve no longer depends on only tiny numeric sliders and JSON.
 - Added regression coverage for chart geometry, nearest-handle selection, and point clamping so the interaction stays stable as the editor evolves.
+
+### Completed batch
+- Hardened the privileged helper boundary so XPC clients are validated against the helper’s authorized-client requirement and helper entrypoints revalidate fan IDs, RPM values, and SMC keys instead of trusting the caller.
+- Added a dedicated security audit note capturing the helper-boundary tightening and the remaining product/security follow-ups.
