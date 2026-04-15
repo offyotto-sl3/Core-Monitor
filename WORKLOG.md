@@ -42,3 +42,10 @@
 - Made the weather location-access path injectable so the startup permission behavior is testable instead of being locked to `CLLocationManager` globals.
 - Added targeted `WeatherViewModel` regression coverage for three cases: no launch-time permission prompt, clear optional-location messaging before opt-in, and fallback weather loading when access exists without a current fix.
 - Verified the batch with `xcodebuild ... test -only-testing:Core-MonitorTests/WeatherViewModelTests`.
+
+## 2026-04-16
+
+### Completed batch
+- Fixed the first-launch discoverability gap for the accessory-style app: if the welcome guide has never been seen, Core Monitor now opens the dashboard automatically instead of launching invisibly into the menu bar.
+- Centralized the welcome-guide completion flag so launch behavior and onboarding sheet state use the same source of truth.
+- Added `WelcomeGuideProgressTests` to lock the launch decision down, rebuilt the macOS app, and confirmed at runtime that a fresh launch now shows the onboarding sheet over a visible dashboard window.
