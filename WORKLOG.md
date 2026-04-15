@@ -43,6 +43,11 @@
 - Added targeted `WeatherViewModel` regression coverage for three cases: no launch-time permission prompt, clear optional-location messaging before opt-in, and fallback weather loading when access exists without a current fix.
 - Verified the batch with `xcodebuild ... test -only-testing:Core-MonitorTests/WeatherViewModelTests`.
 
+### Completed batch
+- Added a structured helper diagnostics exporter that writes a JSON report with app signing details, helper install/connectivity state, launch-at-login state, and menu bar reachability context.
+- Surfaced diagnostics export directly in the welcome-guide readiness panel so support and trust workflows are available where users first decide whether they need helper-backed fan control.
+- Verified the batch with a fresh macOS build, a full `xcodebuild ... test` pass, and a targeted `-only-testing:Core-MonitorTests/HelperDiagnosticsReportTests` run.
+
 ## 2026-04-16
 
 ### Completed batch
