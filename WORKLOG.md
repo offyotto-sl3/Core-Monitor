@@ -52,6 +52,10 @@
 - Added a GitHub bug-report form that asks for the exported helper diagnostics report when issues involve helper install, signing, or fan control.
 - Added `docs/HELPER_DIAGNOSTICS.md` so support guidance and privacy expectations for the JSON report are source-controlled instead of tribal knowledge.
 
+### Completed batch
+- Added `docs/ARCHITECTURE.md` to map the app shell, monitoring path, fan-control/helper boundary, alerts stack, onboarding, and Touch Bar code for contributors.
+- Documented the highest-risk change areas so future work is less likely to push random edits into oversized files without understanding ownership first.
+
 ## 2026-04-16
 
 ### Completed batch
