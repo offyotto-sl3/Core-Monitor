@@ -114,3 +114,8 @@
 ### Completed batch
 - Removed the `alwaysOutOfDate` flag from the privileged-helper embed build phase so Xcode can honor the existing input/output paths instead of rerunning that script on every build and test cycle.
 - Verified the improvement with two consecutive macOS builds and a fresh `xcodebuild ... test` pass; the old “Based on dependency analysis” warning is gone from the filtered build output.
+
+### Completed batch
+- Upgraded the in-app Help search from title-only matching to a lightweight keyword index so common support queries like helper, location, weather, alerts, and login items now resolve to the right sections.
+- Added a clearer search UX with result counts, a one-click clear action, and an empty-state card instead of leaving users with a blank scroll view when no topic matches.
+- Added dedicated `HelpViewSearchTests` coverage and re-verified the full macOS suite with `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test`.
