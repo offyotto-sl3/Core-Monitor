@@ -24,3 +24,7 @@
 ### Completed batch
 - Verified the menu bar settings refactor and preset flow with a fresh macOS build and test pass.
 - Confirmed the debug app still launches and publishes the expected live menu bar item titles after the change.
+
+### Next batch
+- Added a sourced competitor matrix covering Stats, iStat Menus 7, TG Pro, and Macs Fan Control.
+- Captured the product and trust implications so roadmap and README changes can point to concrete public evidence instead of vague claims.
