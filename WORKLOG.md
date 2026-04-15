@@ -110,3 +110,7 @@
 - Tightened helper-health propagation so alert evaluation now uses explicit helper connection state instead of guessing from status-message text.
 - Updated the menu bar status summary to react to live helper reachability and show distinct `Ready`, `Checking`, `Pending`, `Missing`, and attention states instead of a stale install-only badge.
 - Added targeted alert-engine regression coverage for missing, checking, and unreachable helper states, then verified the batch with `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test`.
+
+### Completed batch
+- Removed the `alwaysOutOfDate` flag from the privileged-helper embed build phase so Xcode can honor the existing input/output paths instead of rerunning that script on every build and test cycle.
+- Verified the improvement with two consecutive macOS builds and a fresh `xcodebuild ... test` pass; the old “Based on dependency analysis” warning is gone from the filtered build output.
