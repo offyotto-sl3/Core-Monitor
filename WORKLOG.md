@@ -105,3 +105,8 @@
 - Added a dedicated `Helper Diagnostics` support card to the `System` tab so rechecks and report export no longer depend on reopening the welcome guide.
 - Updated in-app help and the helper diagnostics doc so the support flow now points users to `System` first, while keeping the welcome guide path available.
 - Verified the batch with a fresh macOS build and full `xcodebuild ... test` pass.
+
+### Completed batch
+- Tightened helper-health propagation so alert evaluation now uses explicit helper connection state instead of guessing from status-message text.
+- Updated the menu bar status summary to react to live helper reachability and show distinct `Ready`, `Checking`, `Pending`, `Missing`, and attention states instead of a stale install-only badge.
+- Added targeted alert-engine regression coverage for missing, checking, and unreachable helper states, then verified the batch with `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test`.
