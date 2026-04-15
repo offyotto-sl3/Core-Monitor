@@ -78,3 +78,7 @@
 ### Completed batch
 - Reduced background churn across the Touch Bar and menu bar paths by centralizing refresh timing, caching date formatters, and removing per-widget polling timers that were duplicating the main monitor cadence.
 - Added adaptive activity sampling so expensive top-process/detail work only stays hot while detailed UI is actually visible, while the default background state backs off to a much slower cadence.
+
+### Completed batch
+- Upgraded the custom fan curve editor from a static preview to a directly draggable chart with constrained point movement, so editing the curve no longer depends on only tiny numeric sliders and JSON.
+- Added regression coverage for chart geometry, nearest-handle selection, and point clamping so the interaction stays stable as the editor evolves.
