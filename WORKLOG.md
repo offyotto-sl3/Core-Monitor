@@ -91,3 +91,7 @@
 - Added a reusable rolling trend-history model with 1-minute, 5-minute, and 15-minute time windows instead of only fixed 60-second sparklines.
 - Surfaced a new Overview dashboard trend section for CPU temp, GPU temp, primary fan RPM, and system watts so recent thermal behavior is visible at a glance without jumping to external tools.
 - Verified the batch with a fresh macOS build and full `xcodebuild ... test` pass, plus targeted unit coverage for history retention and range summaries.
+
+### Completed batch
+- Refreshed the competitor matrix with current-source notes on Stats, iStat Menus 7, TG Pro, Macs Fan Control, plus open-source reference points including Hot, iGlance, and iSMC.
+- Tightened the README’s positioning so the repo is explicit about which product lane Core Monitor is choosing instead of implying it will beat every utility on every axis.
