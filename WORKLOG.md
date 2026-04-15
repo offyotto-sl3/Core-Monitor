@@ -28,3 +28,12 @@
 ### Next batch
 - Added a sourced competitor matrix covering Stats, iStat Menus 7, TG Pro, and Macs Fan Control.
 - Captured the product and trust implications so roadmap and README changes can point to concrete public evidence instead of vague claims.
+
+### Completed batch
+- Refined the first-launch welcome guide into smaller SwiftUI subviews and turned the final step into a live readiness checklist for menu bar reachability, launch-at-login, and helper state.
+- Verified the onboarding refactor with a fresh macOS build and test pass.
+
+### Completed batch
+- Traced an actual startup UX regression: the default Touch Bar weather path was prompting for location on launch before the dashboard flow was even reachable.
+- Changed weather to stay dormant until the user explicitly opts in, added a dedicated location-access control in Touch Bar settings, and updated weather widgets to explain the dormant state instead of showing a vague failure.
+- Rebuilt, reran the macOS test suite, and confirmed at runtime that launch now lands in the menu bar popover without the location permission modal hijacking first use.
