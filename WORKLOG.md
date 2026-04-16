@@ -218,6 +218,11 @@
 
 ### Completed batch
 - Removed the app’s persistent dashboard-launch diagnostics path so Core Monitor no longer records local open/visible window behavior for support exports.
+
+### Completed batch
+- Scoped detailed process sampling to the dashboard views that actually need foreground top-process churn: `Alerts` and `Memory` in full mode keep live detail, while the rest of the dashboard stays on the cheaper background cadence.
+- Added `DashboardProcessSamplingPolicy` plus focused tests so future sidebar or Basic Mode changes do not silently reintroduce always-on detailed sampling.
+- Re-verified the change with `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' -derivedDataPath .deriveddata-d835 CODE_SIGNING_ALLOWED=NO test -only-testing:Core-MonitorTests/DashboardProcessSamplingPolicyTests` and a full `xcodebuild ... test` pass.
 - Tightened the privacy story across the app and repo: the welcome guide, menu bar popover, helper diagnostics docs, and README now make the local-only monitoring model explicit and stop using telemetry-heavy wording for core hardware readings.
 - Made quit easier to reach from the menu bar popover with a dedicated red control instead of burying termination as a low-emphasis action row.
 
