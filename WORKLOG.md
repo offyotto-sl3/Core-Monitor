@@ -260,3 +260,8 @@
 - Restored standard quit affordances for the accessory-style app by installing a real app menu with `Quit Core Monitor` and handling `⌘Q` locally even when the app is running without a normal Dock presence.
 - Added explicit quit controls to both the main sidebar and Basic Mode header so users are not forced to hunt for the menu bar popover just to terminate the app.
 - Re-verified the batch against the same clean macOS build and full `xcodebuild ... test` pass used for the weather work, then pushed the weather changes separately to keep the runtime/accessory polish commit atomic.
+
+### Completed batch
+- Centralized startup defaults maintenance in a testable helper instead of leaving one-off cleanup logic inside the app delegate, then extended it to purge the now-deprecated `coremonitor.launchDiagnostics.*` and `coremonitor.didShowFirstLaunchDashboard` residue alongside the older legacy window-frame cleanup.
+- Added focused `WelcomeGuideProgressTests` coverage so both the launch-state purge and the legacy window-frame purge are locked down against a real suite-backed `UserDefaults` domain rather than only through app-launch side effects.
+- Verified the batch with targeted `WelcomeGuideProgressTests`, a full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test` pass, and a debug-app launch check against `/Users/bookme/Library/Preferences/CoreTools.Core-Monitor.plist` confirming the deprecated launch-state keys no longer persist on disk.
