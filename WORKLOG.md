@@ -76,6 +76,11 @@
 - Rebuilt the macOS app, ran the full `xcodebuild ... test` suite, temporarily forced the app plist into a fresh-launch state to verify the onboarding window path, and restored the original user preferences after the check.
 
 ### Completed batch
+- Added a shared quick-actions footer to the live menu bar popovers so the dashboard and setup/help surfaces are reachable from every status item instead of only from the sidebar after the dashboard is already open.
+- Wired those popover actions through the existing dashboard navigation router, which keeps the menu bar affordance small while still deep-linking directly into the `Help` section when users need setup guidance or want to reopen onboarding from there.
+- Re-verified the batch with a fresh macOS build and another full `xcodebuild ... test` pass.
+
+### Completed batch
 - Revalidated the competitor matrix against current public sources instead of leaving the repo on stale competitor assumptions; corrected the Stats release signal and folded TG Pro’s current startup-polish notes back into Core Monitor’s product bar.
 - Kept the README rewrite scoped to a sharper thermal-first story, clearer install channels, and a more explicit “monitoring first, helper optional” trust posture so the repo presentation matches the product lane documented in `docs/COMPETITOR_MATRIX_2026.md`.
 
