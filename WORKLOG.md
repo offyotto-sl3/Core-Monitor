@@ -275,3 +275,7 @@
 - Reproduced a live first-launch onboarding regression instead of trusting stale prefs: accessory-mode launches with leftover `Core-Monitor` processes were masking whether the dashboard and guide actually appeared from a clean state.
 - Reworked the welcome-guide sheet state so only an explicit completion can mark onboarding as seen; transient SwiftUI presentation churn no longer silently burns the one-time guide state.
 - Added focused `WelcomeGuideProgressTests` coverage for the unexpected-dismissal path, reran the full macOS test suite, and revalidated the real app by clearing the persisted welcome flag from `~/Library/Preferences/CoreTools.Core-Monitor.plist`, relaunching the debug app, and capturing a fresh first-launch screenshot that now shows the dashboard plus onboarding sheet again.
+
+### Completed batch
+- Tightened the README’s product positioning so the repo now states the actual lane clearly: thermal-first monitoring, helper-optional fan control, readable menu bar defaults, local diagnostics, and open-source trust.
+- Linked the README directly to the sourced competitor matrix and the broader audit so the repository’s product story stays anchored to documented evidence instead of drifting into generic “system monitor” language.
