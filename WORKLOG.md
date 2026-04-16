@@ -169,6 +169,11 @@
 - Added `HelpViewSearchTests` coverage for the new battery keywords and re-verified the full macOS suite with `xcodebuild ... test`.
 
 ### Completed batch
+- Changed fresh installs and any missing persisted preference to start fan control in `System` mode instead of defaulting to helper-backed `Smart`, which removes the bogus “helper failed” startup posture from a monitoring-only first launch.
+- Added passive fan-status copy plus alert/test coverage so helper availability stays quiet while macOS owns cooling, and softened the `Fans` helper card when the selected mode does not currently need the helper.
+- Updated the README and in-app Help to match the new monitoring-first default, rebuilt the macOS app successfully, and runtime-checked the first-launch dashboard plus post-onboarding Overview/Fans states with fresh screenshots. Full `xcodebuild ... test` runs after the UI-driven inspection hit host-app bootstrap failures without a matching crash report, so this batch is build-verified and runtime-verified but still needs a clean follow-up test pass.
+
+### Completed batch
 - Reworked the welcome-guide flow so each presentation resets to the first onboarding step instead of reopening on a stale later screen.
 - Added a vertical overflow fallback for long onboarding steps and tightened the final “Quick Setup Checklist” layout so the guide degrades to scrolling instead of silently clipping action rows.
 - Rebuilt the macOS app repeatedly and verified the welcome-guide flow visually from a clean first launch through the final step with fresh screenshots.
