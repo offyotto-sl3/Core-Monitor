@@ -250,3 +250,8 @@
 - Tightened the menu bar popover status model so it now shows the active fan mode alongside helper state instead of surfacing stale recent-alert badges that made a healthy monitoring session look unhealthy.
 - Added explicit menu bar summary logic for the important trust distinction between `Helper Optional` in system-owned cooling and real helper problems in managed fan modes, then covered that logic with focused unit tests.
 - Added a direct `Open Fans` path from the temperature popover whenever the current fan mode is helper-backed, rebuilt the macOS app, re-ran the full `xcodebuild ... test` suite, and runtime-checked the updated popovers with fresh screenshots.
+
+### Completed batch
+- Tightened the weather opt-in path so an authorized weather widget now asks Core Location for a fresh on-device fix before dropping to the Cupertino fallback, which keeps “enabled but still showing Cupertino” from looking broken after access is granted.
+- Added focused `WeatherViewModelTests` coverage for live-location refresh, fallback behavior when no fix is available, and automatic refresh when location authorization or the current fix changes while the weather module is running.
+- Verified the batch with a fresh macOS build and a full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test` pass.
