@@ -63,6 +63,10 @@
 ## 2026-04-16
 
 ### Completed batch
+- Revalidated the competitor matrix against current public sources instead of leaving the repo on stale competitor assumptions; corrected the Stats release signal and folded TG Pro’s current startup-polish notes back into Core Monitor’s product bar.
+- Kept the README rewrite scoped to a sharper thermal-first story, clearer install channels, and a more explicit “monitoring first, helper optional” trust posture so the repo presentation matches the product lane documented in `docs/COMPETITOR_MATRIX_2026.md`.
+
+### Completed batch
 - Fixed a real first-launch regression in the accessory-style app: the onboarding/dashboard open decision was being poisoned by defaults-layer state before the welcome-guide preference had actually been persisted.
 - Hardened `WelcomeGuideProgress` to read the app’s persisted defaults domain directly, stopped the legacy window-frame cleanup from rewriting unrelated defaults, aligned the Help screen’s welcome-guide fallback with first-run behavior, and kept the app in `.regular` activation while the dashboard window is open so the onboarding surface no longer vanishes a second after launch.
 - Finished the in-progress dashboard navigation router by exposing the shared sidebar selection type, which makes the new menu bar `Open Alerts` deep link build and work instead of leaving the branch in a compile-broken state.
