@@ -270,3 +270,8 @@
 - Reduced avoidable 1 Hz churn in `SystemMonitor` by caching the slow-moving battery, disk, brightness, and volume reads behind explicit cadence gates instead of re-reading them on every interactive sample.
 - Added `SystemMonitorSupplementalSamplingTests` so the new refresh gates stay locked to the intended 5-second, 10-second, and 15-second minimums and still honor the slower background monitoring cadence.
 - Verified the batch with `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' -derivedDataPath /tmp/CoreMonitor-6b5d-pass1 CODE_SIGNING_ALLOWED=NO test -only-testing:Core-MonitorTests/SystemMonitorSupplementalSamplingTests`, a full macOS `xcodebuild ... test` pass on the warmed derived-data path, and a direct Debug-app smoke launch confirming the app process stayed alive from `/tmp/CoreMonitor-6b5d-pass1/Build/Products/Debug/Core-Monitor.app`.
+
+### Completed batch
+- Retired the legacy `Silent` fan mode from the active UI so users now see one clear firmware-owned cooling option instead of two overlapping system-controlled modes.
+- Canonicalized persisted `silent` selections back to `automatic` on load/save and helper checks, which keeps older preferences compatible without leaving the redundant alias visible in quick modes, onboarding, help copy, or README tables.
+- Verified the batch with `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' -derivedDataPath /tmp/CoreMonitor-6b5d-pass2 CODE_SIGNING_ALLOWED=NO test -only-testing:Core-MonitorTests/CustomFanPresetTests` and a full macOS `xcodebuild ... test` pass on the same derived-data path.
