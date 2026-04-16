@@ -272,6 +272,25 @@
 - Added focused guidance-model coverage in `CustomFanPresetTests`, re-ran targeted fan/help verification with `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test -only-testing:Core-MonitorTests/CustomFanPresetTests -only-testing:Core-MonitorTests/HelpViewSearchTests`, and confirmed the edited SwiftUI surfaces compile cleanly.
 
 ### Completed batch
+- Added duplicate-launch handling at app startup so opening Core Monitor again now routes focus back to the already-running instance instead of leaving stacked menu bar extras behind.
+- Hardened the launch guard for XCTest-hosted runs and added focused coverage for the launch-environment decision so hosted unit tests do not inherit duplicate-instance protection by accident.
+- Re-verified with a fresh `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' -derivedDataPath /tmp/CoreMonitorBatch2TestData CODE_SIGNING_ALLOWED=NO test` pass after clearing stale manual app instances, then runtime-checked that launching the Batch 2 build while another Core Monitor instance was already running did not leave the Batch 2 process resident.
+
+### Completed batch
+- Removed Apple-Silicon-only phrasing from onboarding and thermal-status UI paths that can also appear on Intel Macs, so the app no longer speaks as if every install is on an M-series machine.
+- Centralized that architecture-aware copy in `CoreMonitorPlatformCopy`, updated the welcome guide and alerts status board to use it, and added focused tests for both Apple Silicon and Intel wording.
+- Re-verified with a full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' -derivedDataPath /tmp/CoreMonitorBatch3TestData CODE_SIGNING_ALLOWED=NO test` pass while other Core Monitor instances were still running on the machine, which confirms the hosted-test launch guard still holds under noisy local conditions.
+
+### Completed batch
+- Rewrote the README opening to match the actual product lane: thermal-first monitoring, helper optionality, explicit fan ownership, and local-first trust instead of leading with implementation trivia.
+- Added top-level links to architecture, diagnostics, competitor, and contributor docs so the repo feels maintained and support-oriented before readers dig into code.
+- Tightened install and support sections to point users toward the in-app `System` diagnostics flow and structured bug reports; docs-only batch, so no build rerun was needed.
+
+### Completed batch
+- Tightened the launch-at-login UX so Core Monitor no longer drops user-triggered login-item errors on the floor after a refresh.
+- Centralized launch-at-login state into a reusable summary model, added direct `Open Login Items` actions via `SMAppService.openSystemSettingsLoginItems()`, and extracted the System-tab card into its own SwiftUI file instead of keeping more inline startup UI inside `ContentView`.
+- Reused the same launch-at-login status/action logic in the welcome-guide checklist so onboarding can send users straight to Login Items when approval is required instead of only showing passive copy.
+- Verified the batch with a full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' -derivedDataPath /tmp/CoreMonitorBatch1TestData CODE_SIGNING_ALLOWED=NO test` pass and a fresh debug-build launch plus screenshot capture from `/tmp/CoreMonitorBatch1TestData/Build/Products/Debug/Core-Monitor.app`.
 - Tightened the privacy story across the app and repo: the welcome guide, menu bar popover, helper diagnostics docs, and README now make the local-only monitoring model explicit and stop using telemetry-heavy wording for core hardware readings.
 - Made quit easier to reach from the menu bar popover with a dedicated red control instead of burying termination as a low-emphasis action row.
 
