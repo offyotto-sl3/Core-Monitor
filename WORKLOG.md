@@ -270,3 +270,8 @@
 - Fixed a real stale-state regression in defaults cleanup: deprecated `coremonitor.launchDiagnostics.*` keys and `coremonitor.didShowFirstLaunchDashboard` were only purged once, so they could survive forever if older builds or mixed local runs reintroduced them after the reset marker was set.
 - Made the launch-state purge idempotent by rechecking the persisted defaults domain even when the reset marker already exists, and added regression coverage for the exact “marker already set, stale keys came back” case.
 - Re-verified the batch with a full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS,arch=arm64' CODE_SIGNING_ALLOWED=NO test` pass plus a fresh debug-app relaunch against the live `CoreTools.Core-Monitor` defaults domain; the deprecated launch-diagnostics keys are now removed again on startup.
+
+### Completed batch
+- Changed fresh Touch Bar defaults to stay in `System` mode until the user explicitly opts into Core Monitor’s custom Touch Bar layout, which avoids surprising first-launch takeover on Touch Bar Macs while preserving existing saved presentation choices.
+- Made `TouchBarCustomizationSettings` injectable with a custom `UserDefaults` store so startup-mode behavior is testable instead of being locked behind the singleton.
+- Added dedicated defaults-migration coverage for fresh installs and legacy stored `app` mode, updated the onboarding/help copy to explain the opt-in behavior, and re-verified the full macOS suite with `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS,arch=arm64' CODE_SIGNING_ALLOWED=NO test`.
