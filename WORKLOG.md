@@ -88,6 +88,11 @@
 - Added menu bar settings coverage for default, reset, and inaccessible-state recovery behavior.
 
 ### Completed batch
+- Made top-process sampling restarts idempotent so reasserting the same activity-sampling interval no longer tears down the sampler and forces an immediate extra process scan.
+- This reduces avoidable process enumeration churn when dashboard and menu bar surfaces add or remove overlapping “detailed sampling” reasons while the effective interval stays the same.
+- Added focused scheduling coverage so future refactors keep the sampler’s start/restart policy cheap and predictable.
+
+### Completed batch
 - Fixed the first-launch discoverability gap for the accessory-style app: if the welcome guide has never been seen, Core Monitor now opens the dashboard automatically instead of launching invisibly into the menu bar.
 - Centralized the welcome-guide completion flag so launch behavior and onboarding sheet state use the same source of truth.
 - Added `WelcomeGuideProgressTests` to lock the launch decision down, rebuilt the macOS app, and confirmed at runtime that a fresh launch now shows the onboarding sheet over a visible dashboard window.
