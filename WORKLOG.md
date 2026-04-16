@@ -73,6 +73,10 @@
 - Updated the README compatibility badge and support wording so the repo stops advertising macOS 12 support that the shipped app does not provide.
 
 ### Completed batch
+- Added a dedicated menu bar fan item so the default `Balanced` layout now surfaces live RPM alongside CPU load and temperature, which better matches the app’s thermal-monitoring lane and competitor expectations.
+- Updated the menu bar settings card copy/previews plus regression coverage so the new fan-focused default stays intentional instead of silently drifting back toward a generic system monitor mix.
+
+### Completed batch
 - Revalidated the competitor matrix against current public sources instead of leaving the repo on stale competitor assumptions; corrected the Stats release signal and folded TG Pro’s current startup-polish notes back into Core Monitor’s product bar.
 - Kept the README rewrite scoped to a sharper thermal-first story, clearer install channels, and a more explicit “monitoring first, helper optional” trust posture so the repo presentation matches the product lane documented in `docs/COMPETITOR_MATRIX_2026.md`.
 
