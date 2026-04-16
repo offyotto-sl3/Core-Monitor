@@ -236,6 +236,23 @@
 
 ### Completed batch
 - Removed the app’s persistent dashboard-launch diagnostics path so Core Monitor no longer records local open/visible window behavior for support exports.
+
+### Completed batch
+- Added a dedicated dashboard-shortcut manager plus a `System` card so users can opt into a global `Option-Command-M` path instead of depending solely on menu bar visibility or reopen behavior.
+- Added an `Open Dashboard` app-menu action that uses the same shortcut while Core Monitor is active, expanded Help search coverage for the new path, and documented the shortcut in the README.
+- Verified the batch with `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test -only-testing:Core-MonitorTests/DashboardShortcutConfigurationTests -only-testing:Core-MonitorTests/HelpViewSearchTests`, then runtime-checked a single launched app instance: the app menu now exposes `Open Dashboard`, and clicking it opens the titled `Core Monitor` dashboard window.
+
+### Completed batch
+- Promoted the dashboard shortcut into the welcome-guide readiness checklist so first-run setup now treats “keep one menu bar item visible” and “enable a fallback shortcut” as the same dashboard-reachability problem.
+- Added an onboarding action that enables the shortcut directly from the checklist instead of forcing users to remember the `System` tab after they lose menu bar visibility.
+- Verified the follow-up with a fresh `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO build`, then relaunched the debug app and rechecked that the `Open Dashboard` app-menu action still brings the dashboard window forward while the welcome-guide state is pending.
+
+### Completed batch
+- Tightened the fan-control trust model so `Silent` is now documented and surfaced as a helper-backed handoff back to the firmware curve rather than being lumped together with actively managed fan modes.
+- Updated the fan guidance card, in-app Help, and README so `System`, `Silent`, and helper-backed managed modes describe the same ownership model everywhere instead of leaving hardware-control expectations ambiguous.
+- Added focused guidance-model coverage in `CustomFanPresetTests`, re-ran targeted fan/help verification with `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test -only-testing:Core-MonitorTests/CustomFanPresetTests -only-testing:Core-MonitorTests/HelpViewSearchTests`, and confirmed the edited SwiftUI surfaces compile cleanly.
+
+### Completed batch
 - Tightened the privacy story across the app and repo: the welcome guide, menu bar popover, helper diagnostics docs, and README now make the local-only monitoring model explicit and stop using telemetry-heavy wording for core hardware readings.
 - Made quit easier to reach from the menu bar popover with a dedicated red control instead of burying termination as a low-emphasis action row.
 
