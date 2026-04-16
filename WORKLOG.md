@@ -230,6 +230,11 @@
 - Re-verified with a full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' -derivedDataPath /tmp/CoreMonitorBatch3TestData CODE_SIGNING_ALLOWED=NO test` pass while other Core Monitor instances were still running on the machine, which confirms the hosted-test launch guard still holds under noisy local conditions.
 
 ### Completed batch
+- Rewrote the README opening to match the actual product lane: thermal-first monitoring, helper optionality, explicit fan ownership, and local-first trust instead of leading with implementation trivia.
+- Added top-level links to architecture, diagnostics, competitor, and contributor docs so the repo feels maintained and support-oriented before readers dig into code.
+- Tightened install and support sections to point users toward the in-app `System` diagnostics flow and structured bug reports; docs-only batch, so no build rerun was needed.
+
+### Completed batch
 - Tightened the launch-at-login UX so Core Monitor no longer drops user-triggered login-item errors on the floor after a refresh.
 - Centralized launch-at-login state into a reusable summary model, added direct `Open Login Items` actions via `SMAppService.openSystemSettingsLoginItems()`, and extracted the System-tab card into its own SwiftUI file instead of keeping more inline startup UI inside `ContentView`.
 - Reused the same launch-at-login status/action logic in the welcome-guide checklist so onboarding can send users straight to Login Items when approval is required instead of only showing passive copy.
