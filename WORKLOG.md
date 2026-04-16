@@ -218,6 +218,13 @@
 
 ### Completed batch
 - Removed the app’s persistent dashboard-launch diagnostics path so Core Monitor no longer records local open/visible window behavior for support exports.
+
+### Completed batch
+- Tightened the fan-control trust model so `Silent` is now documented and surfaced as a helper-backed handoff back to the firmware curve rather than being lumped together with actively managed fan modes.
+- Updated the fan guidance card, in-app Help, and README so `System`, `Silent`, and helper-backed managed modes describe the same ownership model everywhere instead of leaving hardware-control expectations ambiguous.
+- Added focused guidance-model coverage in `CustomFanPresetTests`, re-ran targeted fan/help verification with `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test -only-testing:Core-MonitorTests/CustomFanPresetTests -only-testing:Core-MonitorTests/HelpViewSearchTests`, and confirmed the edited SwiftUI surfaces compile cleanly.
+
+### Completed batch
 - Tightened the privacy story across the app and repo: the welcome guide, menu bar popover, helper diagnostics docs, and README now make the local-only monitoring model explicit and stop using telemetry-heavy wording for core hardware readings.
 - Made quit easier to reach from the menu bar popover with a dedicated red control instead of burying termination as a low-emphasis action row.
 
