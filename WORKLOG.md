@@ -280,3 +280,8 @@
 - Reworked the disk menu bar popover so it no longer walks every PID from the SwiftUI view body on every render.
 - Added a dedicated `DiskProcessSampler` that samples disk I/O on a background queue while the popover is open, converts cumulative `rusage` counters into recent per-interval activity, and keeps the `Private` path intact when process insights are disabled.
 - Changed the UI copy from lifetime `PROCESS TOTALS` to live `PROCESS ACTIVITY`, added clearer `Sampling` and `Quiet` states, and verified the batch with targeted `DiskProcessSamplerTests`, a full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' -derivedDataPath .deriveddata-d835 CODE_SIGNING_ALLOWED=NO test` pass, and a repo-local Debug app smoke launch via `open -g`.
+
+### Completed batch
+- Tightened the README around the product bar that came out of the competitor review instead of leaving the repo front page at a generic “native system monitor” description.
+- Made the public positioning explicit: thermal-first, monitoring-first, helper opt-in, and local-by-default.
+- Clarified installation copy so users know monitoring works immediately and the helper can be installed later from the in-app fan-control flow.
