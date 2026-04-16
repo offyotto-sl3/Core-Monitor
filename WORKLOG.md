@@ -157,3 +157,8 @@
 ### Completed batch
 - Extended helper diagnostics exports to carry both the raw host model identifier and the friendly model name derived from the refreshed registry.
 - Updated helper diagnostics tests and docs so support threads can immediately tell which Mac was involved without decoding identifiers manually.
+
+### Completed batch
+- Removed the dashboard’s extra copy-state layer so `ContentView` now renders directly from `SystemMonitor.snapshot` and the monitor-owned history buffers instead of rebuilding a second shadow model on every sample.
+- Expanded the Battery tab with clearer power-state diagnostics: source, time-to-full or time-remaining, temperature, voltage, and current are now surfaced from the existing sampler instead of being hidden behind the raw data model.
+- Added `BatteryDetailFormatterTests` coverage and verified the batch with a fresh macOS build, a targeted battery formatter test run, and a full `xcodebuild ... test` pass.
