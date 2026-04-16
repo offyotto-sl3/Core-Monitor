@@ -335,6 +335,11 @@
 - Re-verified the batch against the same clean macOS build and full `xcodebuild ... test` pass used for the weather work, then pushed the weather changes separately to keep the runtime/accessory polish commit atomic.
 
 ### Completed batch
+- Finished the silent-mode cleanup by removing the last `Cool Down` / `Silent` presentation leftovers from Basic Mode, fan-mode metadata, menu bar status copy, Help, and onboarding while keeping the legacy `.silent` persisted value as a safe alias to `System`.
+- Rebased that cleanup onto the much newer shared branch state, repaired an upstream `SystemMonitor` merge regression where two disk-refresh strategies had been partially combined, and kept disk throttling on the newer dedicated `DiskStatsRefreshPolicy` path while battery and volume/brightness stay on the supplemental cadence gates.
+- Re-verified the batch with targeted `CustomFanPresetTests`, `SystemMonitorSupplementalSamplingTests`, and `DiskStatsRefreshPolicyTests`, then ran a fresh full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test` pass successfully.
+
+### Completed batch
 - Centralized startup defaults maintenance in a testable helper instead of leaving one-off cleanup logic inside the app delegate, then extended it to purge the now-deprecated `coremonitor.launchDiagnostics.*` and `coremonitor.didShowFirstLaunchDashboard` residue alongside the older legacy window-frame cleanup.
 - Added focused `WelcomeGuideProgressTests` coverage so both the launch-state purge and the legacy window-frame purge are locked down against a real suite-backed `UserDefaults` domain rather than only through app-launch side effects.
 - Verified the batch with targeted `WelcomeGuideProgressTests`, a full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test` pass, and a debug-app launch check against `/Users/bookme/Library/Preferences/CoreTools.Core-Monitor.plist` confirming the deprecated launch-state keys no longer persist on disk.
@@ -373,3 +378,12 @@
 - Throttled expensive disk-capacity refreshes behind a dedicated `DiskStatsRefreshPolicy` instead of recalculating purgeable and important-usage volume state on every 1-second dashboard sample.
 - Cached the last disk snapshot inside `SystemMonitor` and added focused `DiskStatsRefreshPolicyTests` coverage so future edits do not quietly reintroduce per-sample disk refresh churn.
 - Re-verified the batch with targeted policy tests, a fresh full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' -derivedDataPath .deriveddata CODE_SIGNING_ALLOWED=NO test` pass, and a short relaunch log check showing only a single `com.apple.cache_delete` timestamp in the post-launch window instead of a per-second pattern.
+
+- Finished the silent-mode retirement by replacing the lingering Basic Mode `Cool Down` shortcut with an explicit `System Auto` action and aligning the menu bar status pill with the same automatic-cooling presentation.
+- Tightened the compatibility alias so any remaining in-memory `.silent` state now behaves, labels, and reports helper requirements exactly like `automatic`, instead of leaking legacy copy such as `Mode SILENT`.
+- Re-verified the batch with `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' -derivedDataPath /tmp/CoreMonitor-6b5d-pass4 CODE_SIGNING_ALLOWED=NO test -only-testing:Core-MonitorTests/CustomFanPresetTests` and a warmed full macOS `xcodebuild ... test` pass on the same derived-data path.
+
+### Completed batch
+- Quieted the Overview alerts strip so healthy systems no longer show a high-emphasis `Open Alerts` button by default; the card now only surfaces a CTA when there is an active alert or an actual notifications/setup issue to address.
+- Added `AlertsDashboardStripPresentation` coverage for active alerts, pending notification setup, muted sessions, and the fully healthy no-action state so this UX policy stays intentional instead of regressing through copy churn.
+- Rebuilt and re-ran the full macOS test suite on `/tmp/CoreMonitor-6b5d-pass5`, then refreshed the README Overview screenshot from a live debug build so the repo UI preview matches the current dashboard instead of the older pre-alert-strip layout.
