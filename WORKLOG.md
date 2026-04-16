@@ -63,6 +63,11 @@
 ## 2026-04-16
 
 ### Completed batch
+- Cleaned up the current compiler warnings in the menu bar refresh path and weather location-access controller instead of leaving actor-isolation and no-op annotation noise in the baseline build.
+- Switched menu bar item refresh fan-out onto a main-actor hop helper so Combine and notification callbacks no longer touch actor-isolated state directly.
+- Re-verified the app with a fresh macOS build and a serialized `xcodebuild ... test` pass after the initial concurrent-build lock collision.
+
+### Completed batch
 - Fixed the first-launch discoverability gap for the accessory-style app: if the welcome guide has never been seen, Core Monitor now opens the dashboard automatically instead of launching invisibly into the menu bar.
 - Centralized the welcome-guide completion flag so launch behavior and onboarding sheet state use the same source of truth.
 - Added `WelcomeGuideProgressTests` to lock the launch decision down, rebuilt the macOS app, and confirmed at runtime that a fresh launch now shows the onboarding sheet over a visible dashboard window.
