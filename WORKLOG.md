@@ -279,3 +279,7 @@
 ### Completed batch
 - Tightened the README’s product positioning so the repo now states the actual lane clearly: thermal-first monitoring, helper-optional fan control, readable menu bar defaults, local diagnostics, and open-source trust.
 - Linked the README directly to the sourced competitor matrix and the broader audit so the repository’s product story stays anchored to documented evidence instead of drifting into generic “system monitor” language.
+
+### Completed batch
+- Added real app-menu commands for the accessory-style app so users can reopen the dashboard, jump to Help, and relaunch the welcome guide without depending on a visible Dock icon or guessing which menu bar item to click.
+- Rebuilt the macOS app and verified the live app menu now exposes `Open Dashboard`, `Open Help`, `Show Welcome Guide`, and `Quit Core-Monitor`.
