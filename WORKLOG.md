@@ -275,3 +275,8 @@
 - Throttled disk-capacity refreshes behind a dedicated `DiskStatsRefreshPolicy` instead of recalculating purgeable and important-usage volume state on every live sample.
 - Cached the last disk snapshot inside `SystemMonitor` and added focused `DiskStatsRefreshPolicyTests` coverage so future edits do not quietly reintroduce per-sample disk refresh churn.
 - Verified the batch with `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' -derivedDataPath .deriveddata-d835 CODE_SIGNING_ALLOWED=NO test -only-testing:Core-MonitorTests/DiskStatsRefreshPolicyTests`, a full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' -derivedDataPath .deriveddata-d835 CODE_SIGNING_ALLOWED=NO test` pass, and a repo-local Debug app smoke launch via `open -g`.
+
+### Completed batch
+- Reworked the disk menu bar popover so it no longer walks every PID from the SwiftUI view body on every render.
+- Added a dedicated `DiskProcessSampler` that samples disk I/O on a background queue while the popover is open, converts cumulative `rusage` counters into recent per-interval activity, and keeps the `Private` path intact when process insights are disabled.
+- Changed the UI copy from lifetime `PROCESS TOTALS` to live `PROCESS ACTIVITY`, added clearer `Sampling` and `Quiet` states, and verified the batch with targeted `DiskProcessSamplerTests`, a full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' -derivedDataPath .deriveddata-d835 CODE_SIGNING_ALLOWED=NO test` pass, and a repo-local Debug app smoke launch via `open -g`.
