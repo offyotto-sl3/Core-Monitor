@@ -265,3 +265,8 @@
 - Centralized startup defaults maintenance in a testable helper instead of leaving one-off cleanup logic inside the app delegate, then extended it to purge the now-deprecated `coremonitor.launchDiagnostics.*` and `coremonitor.didShowFirstLaunchDashboard` residue alongside the older legacy window-frame cleanup.
 - Added focused `WelcomeGuideProgressTests` coverage so both the launch-state purge and the legacy window-frame purge are locked down against a real suite-backed `UserDefaults` domain rather than only through app-launch side effects.
 - Verified the batch with targeted `WelcomeGuideProgressTests`, a full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test` pass, and a debug-app launch check against `/Users/bookme/Library/Preferences/CoreTools.Core-Monitor.plist` confirming the deprecated launch-state keys no longer persist on disk.
+
+### Completed batch
+- Fixed a fan-control trust mismatch by making `Silent` a true system-owned mode instead of still treating it like a helper-backed managed profile; users can now switch into `Silent` without being blocked by helper state when they just want firmware control plus monitoring.
+- Aligned the helper-dependent UI and alert surfaces with that behavior so `Silent` now reads as `Helper Optional` in status contexts, stops tripping helper-unavailable alerts, and no longer implies Core Monitor is actively managing fans while the firmware owns the curve.
+- Verified the batch with targeted `CustomFanPresetTests` and `AlertEngineTests`, then a fresh full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test` pass.
