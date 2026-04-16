@@ -153,3 +153,7 @@
 - Refreshed `MacModelRegistry` against Apple’s current Mac identification pages so recent MacBook Air, MacBook Pro, Mac mini, iMac, and Mac Studio identifiers resolve to accurate names instead of stale placeholders.
 - Fixed multiple Apple Silicon MacBook Pro mappings, switched the Overview subtitle from the raw `hw.model` string to a friendly model name, and limited the delayed fan-response caveat to the portable Apple Silicon Macs where it actually applies.
 - Added dedicated registry and fan-guidance tests so future model-table edits catch duplicate identifiers, stale mappings, and caveat regressions before they ship.
+
+### Completed batch
+- Extended helper diagnostics exports to carry both the raw host model identifier and the friendly model name derived from the refreshed registry.
+- Updated helper diagnostics tests and docs so support threads can immediately tell which Mac was involved without decoding identifiers manually.
