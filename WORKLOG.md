@@ -314,3 +314,17 @@
 - Finished the monitoring-first cleanup that had already removed the alert tab and alert badges from the main dashboard/menu bar surfaces, then aligned the README, docs site, helper diagnostics guide, issue template, release categorization, and contributor architecture notes with the product that actually ships now.
 - Confirmed the dirty tree still passes a clean macOS build plus full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test` run once build/test were executed sequentially instead of fighting over the same Xcode build database.
 - Runtime-checked the current onboarding/dashboard path by backing up both the host and container preference plists, forcing a first-launch state, relaunching the Debug app, and capturing fresh screenshots that show the welcome guide correctly layered over the dashboard; the preference split between `~/Library/Preferences` and the sandbox container is now documented in this worklog as a real validation nuance.
+
+### Completed batch
+- Finished the alert-surface retirement by removing the `Alerts` sidebar destination from the main dashboard path, unwiring `AlertManager` from the app shell, and updating the in-app Help search content plus navigation-router tests so the app no longer advertises a dead tab.
+- Rebuilt the macOS app successfully after the routing cleanup and re-ran the first-launch screenshot flow against backed-up host/container preferences to confirm the welcome guide still appears over the dashboard while the sidebar now reflects the monitoring-first navigation model.
+
+### Completed batch
+- Reversed an overcorrection from the monitoring-first cleanup after a live dashboard review showed that removing the `Alerts` tab had also removed the only in-app path to alert presets, per-rule thresholds, notification policy, and history management.
+- Restored the full alert-management surface, rewired `AlertManager` back into the dashboard flow, kept the new monitoring/privacy/helper status cards in `Overview` and `System`, and updated Help/onboarding/fan guidance copy so the product once again describes alerting accurately.
+- Verified the restoration with a clean `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO test` pass using `/tmp/core-monitor-hourly-alert-restore`, then relaunched the Debug app and captured a fresh dashboard screenshot confirming the `Alerts` sidebar entry is back alongside the new status surfaces.
+
+### Completed batch
+- Hardened the macOS app host for unit-test runs so `xctest` no longer boots the full menu bar, dashboard, Touch Bar, and monitoring stack just to execute model-level suites.
+- Added a small `AppRuntimeContext` gate plus focused regression coverage for the XCTest environment detection path, keeping interactive startup behavior unchanged for normal launches while removing the test-host bootstrap race.
+- Verified the batch with a fresh full `xcodebuild -project Core-Monitor.xcodeproj -scheme Core-Monitor -destination 'platform=macOS' -derivedDataPath /tmp/core-monitor-hourly-test-guard CODE_SIGNING_ALLOWED=NO test` pass after reproducing the prior early-exit failure, then launched `/tmp/core-monitor-hourly-test-guard/Build/Products/Debug/Core-Monitor.app` manually and captured `/tmp/core-monitor-hourly-dashboard.png` to confirm the normal dashboard/welcome flow still appears outside tests.
