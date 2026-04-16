@@ -148,3 +148,8 @@
 - Fixed the Touch Bar weather widget so it stays inside the real Touch Bar vertical budget instead of asking Auto Layout for a taller three-line stack and logging a runtime height violation.
 - Collapsed the expanded weather copy into a single compact summary line, reduced label sizing to match the pill surface, and set the widget’s intrinsic height to `TB.pillH` so pill and strip renderers agree on its footprint.
 - Added `WeatherWidgetLayoutTests` coverage for compact and expanded sizing, re-ran the full macOS suite, and confirmed a fresh app launch no longer logs the old `Expected min height ... WeatherWidget` warning.
+
+### Completed batch
+- Refreshed `MacModelRegistry` against Apple’s current Mac identification pages so recent MacBook Air, MacBook Pro, Mac mini, iMac, and Mac Studio identifiers resolve to accurate names instead of stale placeholders.
+- Fixed multiple Apple Silicon MacBook Pro mappings, switched the Overview subtitle from the raw `hw.model` string to a friendly model name, and limited the delayed fan-response caveat to the portable Apple Silicon Macs where it actually applies.
+- Added dedicated registry and fan-guidance tests so future model-table edits catch duplicate identifiers, stale mappings, and caveat regressions before they ship.
